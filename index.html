@@ -216,16 +216,6 @@
   .dl-btn:hover{ filter:brightness(1.08); }
   .dl-btn:active{ filter:brightness(.94); }
 
-  .btn-row{ display:flex; gap:8px; flex-wrap:wrap; }
-  .copy-btn{
-    display:inline-flex; align-items:center; gap:7px;
-    background:#fff; color:var(--tab-color); border:1.5px solid var(--tab-color);
-    border-radius:8px; padding:9px 16px; font-size:13.5px; font-weight:700; cursor:pointer;
-    transition:background .15s ease;
-  }
-  .copy-btn:hover{ background:var(--tab-soft); }
-  .copy-btn[data-done="true"]{ background:var(--tab-color); color:#fff; }
-
   .preview{
     background:var(--card); border:1px solid var(--line); border-radius:12px;
     padding:20px 22px; overflow-x:auto;
@@ -431,10 +421,7 @@
       <div class="sec-label"><span class="stripe"></span>05 · 산출물</div>
       <div class="deliv-head">
         <div class="deliv-name">스프린트_실행<span>PM-prompt.md 실행 결과 · 내부 개발/관리용 PRD</span></div>
-        <div class="btn-row">
-          <button class="copy-btn" onclick="copyFile(this,'pm')">📋 전체 내용 복사</button>
-          <button class="dl-btn" onclick="downloadFile('pm')">⬇ 전체 문서 다운로드</button>
-        </div>
+        <button class="dl-btn" onclick="downloadFile('pm')">⬇ 전체 문서 다운로드</button>
       </div>
       <div class="preview">
         <div class="preview-tag">Preview — TODO 상위 4건 + 대표 케이스 1건</div>
@@ -517,10 +504,7 @@
       <div class="sec-label"><span class="stripe"></span>05 · 산출물</div>
       <div class="deliv-head">
         <div class="deliv-name">세컨부스트_고객사_합의용_기획서<span>customer-prompt.md 실행 결과 · 고객사 합의용 제품 기획서</span></div>
-        <div class="btn-row">
-          <button class="copy-btn" onclick="copyFile(this,'cust')">📋 전체 내용 복사</button>
-          <button class="dl-btn" onclick="downloadFile('cust')">⬇ 전체 문서 다운로드</button>
-        </div>
+        <button class="dl-btn" onclick="downloadFile('cust')">⬇ 전체 문서 다운로드</button>
       </div>
       <div class="preview">
         <div class="preview-tag">Preview — 케이스 목차(발췌) + 대표 케이스 1건</div>
@@ -611,10 +595,7 @@
       <div class="sec-label"><span class="stripe"></span>05 · 산출물</div>
       <div class="deliv-head">
         <div class="deliv-name">스펙_리스크_의사결정_요청서<span>challenge-prompt-v3.md 실행 결과 · 스펙 리스크 의사결정 요청서</span></div>
-        <div class="btn-row">
-          <button class="copy-btn" onclick="copyFile(this,'exec')">📋 전체 내용 복사</button>
-          <button class="dl-btn" onclick="downloadFile('exec')">⬇ 전체 문서 다운로드</button>
-        </div>
+        <button class="dl-btn" onclick="downloadFile('exec')">⬇ 전체 문서 다운로드</button>
       </div>
       <div class="preview">
         <div class="preview-tag">Preview — Executive Summary + Blocker 1건</div>
@@ -756,45 +737,7 @@
         w.document.write("<pre style=\"white-space:pre-wrap;font-family:monospace;padding:24px;\">" +
           f.content.replace(/&/g,"&amp;").replace(/</g,"&lt;") + "</pre>");
         w.document.title = f.name;
-      }else{
-        copyFile(null, key);
       }
-    }
-  }
-
-  function copyFile(btn, key){
-    var f = FILES[key];
-    if(!f){ return; }
-    var onDone = function(ok){
-      if(!btn) return;
-      btn.textContent = ok ? "✓ 복사됨" : "복사 실패, 직접 선택해 주세요";
-      btn.setAttribute("data-done", ok ? "true" : "false");
-      setTimeout(function(){
-        btn.textContent = "📋 전체 내용 복사";
-        btn.removeAttribute("data-done");
-      }, 1800);
-    };
-    if(navigator.clipboard && navigator.clipboard.writeText){
-      navigator.clipboard.writeText(f.content).then(function(){ onDone(true); }, function(){ fallbackCopy(f.content, onDone); });
-    }else{
-      fallbackCopy(f.content, onDone);
-    }
-  }
-
-  function fallbackCopy(text, onDone){
-    try{
-      var ta = document.createElement("textarea");
-      ta.value = text;
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.focus();
-      ta.select();
-      var ok = document.execCommand("copy");
-      document.body.removeChild(ta);
-      onDone(ok);
-    }catch(err){
-      onDone(false);
     }
   }
 </script>
