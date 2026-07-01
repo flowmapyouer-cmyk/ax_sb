@@ -12,6 +12,9 @@
   - GitHub Pages로 열람: 저장소 Settings → Pages → Branch를 `main`으로 설정하면
     `https://<사용자명>.github.io/ax_sb/` 에서 바로 볼 수 있습니다.
   - 로컬에서 열람: `index.html`을 더블클릭해 브라우저로 바로 열어도 동일하게 동작합니다.
+  - **share.streamlit.io로 배포**: `streamlit_app.py`가 `index.html`을 그대로 임베드하는
+    Streamlit 앱입니다. Main file path를 `streamlit_app.py`로 지정하면 배포됩니다
+    (`requirements.txt`에 `streamlit` 의존성 포함).
 
 ## 폴더 구조
 
