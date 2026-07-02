@@ -771,6 +771,12 @@
       panels.forEach(function(p){
         p.setAttribute('data-shown', p.getAttribute('data-panel') === target);
       });
+      // 일부 브라우저는 형제 요소의 display 변경 후 sticky 배치를 다시 계산하지
+      // 못하는 버그가 있어, 강제로 reflow를 일으켜 상단 탭 고정을 재계산시킨다.
+      var tabbarEl = document.querySelector('.tabbar');
+      tabbarEl.style.position = 'static';
+      void tabbarEl.offsetHeight;
+      tabbarEl.style.position = '';
       heroCallout.classList.remove('tone-pm','tone-cust','tone-exec');
       heroCallout.classList.add('tone-' + target);
       if(target === 'pm'){
