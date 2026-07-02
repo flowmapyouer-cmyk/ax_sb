@@ -789,7 +789,12 @@
         heroDetail.classList.remove('open');
         heroCallout.setAttribute('aria-expanded','false');
       }
-      window.scrollTo({top:0, behavior:'smooth'});
+      // 페이지 맨 위(제목·콜아웃)까지 되돌리지 않고, 탭바가 이미 지나간 경우에만
+      // 탭바 위치까지만 살짝 스크롤해 지금 보던 자리에 최대한 가깝게 유지한다.
+      var tabbarTop = tabbarEl.getBoundingClientRect().top + window.pageYOffset;
+      if(window.pageYOffset > tabbarTop){
+        window.scrollTo({top:tabbarTop, behavior:'smooth'});
+      }
     });
   });
 
