@@ -327,22 +327,25 @@
   .next-action{
     background:var(--exec-soft); border:1px solid var(--exec); border-radius:10px;
     padding:18px 20px; font-size:17px; font-weight:800; color:var(--exec); text-align:center;
+  }
 
-  /* ---------- Skill file links (thin, no block) ---------- */
+  /* ---------- Skill file links (thin, no block, inside skill-card) ---------- */
   .skill-file-links{
-    display:flex; flex-wrap:wrap; gap:4px 18px;
-    margin-top:2px;
+    display:flex; flex-wrap:wrap; gap:6px 18px;
+    padding-top:10px; margin-top:2px;
+    border-top:1px dashed var(--line);
   }
   .file-link{
-    background:none; border:none; padding:0; cursor:pointer;
+    -webkit-appearance:none; appearance:none;
+    background:transparent !important; border:none !important; box-shadow:none !important;
+    padding:0; cursor:pointer;
     font-family:inherit; font-size:12.5px; font-weight:500; letter-spacing:.01em;
     color:var(--ink-faint);
     display:inline-flex; align-items:center; gap:5px;
     transition:color .12s ease;
   }
-  .file-link:hover{ color:var(--tab-color); }
+  .file-link:hover{ color:var(--tab-color); text-decoration:underline; }
   .file-link:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
-  }
 
   /* Exec preview */
   .exec-summary{
@@ -459,10 +462,10 @@
       <div class="skill-card">
         <div class="skill-row"><span class="lbl">업로드</span><span class="val">슬랙·이메일·회의 메모 텍스트 파일 업로드 또는 원문 복사·붙여넣기</span></div>
         <div class="skill-row"><span class="lbl">키워드</span><span class="val"><span class="skill-kw">TODO 만들래</span><span class="skill-kw">기획서 뽑아줘</span></span></div>
-      </div>
-      <div class="skill-file-links">
-        <button class="file-link" onclick="downloadTextFile('pmPrompt')">📄 실무자 프롬프트</button>
-        <button class="file-link" onclick="downloadTextFile('pmMatrix')">📄 실무자 매트릭스</button>
+        <div class="skill-file-links">
+          <button class="file-link" onclick="downloadTextFile('pmPrompt')">📄 실무자 프롬프트</button>
+          <button class="file-link" onclick="downloadTextFile('pmMatrix')">📄 실무자 매트릭스</button>
+        </div>
       </div>
     </section>
 
@@ -559,10 +562,10 @@
       <div class="skill-card">
         <div class="skill-row"><span class="lbl">업로드</span><span class="val">비정형 텍스트 파일 업로드</span></div>
         <div class="skill-row"><span class="lbl">키워드</span><span class="val"><span class="skill-kw">고객사 공유용으로 정리해줘</span><span class="skill-kw">이걸로 고객사 기획서 좀</span></span></div>
-      </div>
-      <div class="skill-file-links">
-        <button class="file-link" onclick="downloadTextFile('custPrompt')">📄 고객사 프롬프트</button>
-        <button class="file-link" onclick="downloadTextFile('custMatrix')">📄 고객사 매트릭스</button>
+        <div class="skill-file-links">
+          <button class="file-link" onclick="downloadTextFile('custPrompt')">📄 고객사 프롬프트</button>
+          <button class="file-link" onclick="downloadTextFile('custMatrix')">📄 고객사 매트릭스</button>
+        </div>
       </div>
     </section>
 
@@ -667,10 +670,10 @@
       <div class="skill-card">
         <div class="skill-row"><span class="lbl">업로드</span><span class="val">비정형 텍스트 또는 파일 업로드</span></div>
         <div class="skill-row"><span class="lbl">키워드</span><span class="val"><span class="skill-kw">리스크 요약해줘</span><span class="skill-kw">보고서 작성하고 싶어</span></span></div>
-      </div>
-      <div class="skill-file-links">
-        <button class="file-link" onclick="downloadTextFile('execPrompt')">📄 경영진 프롬프트</button>
-        <button class="file-link" onclick="downloadTextFile('execMatrix')">📄 경영진 매트릭스</button>
+        <div class="skill-file-links">
+          <button class="file-link" onclick="downloadTextFile('execPrompt')">📄 경영진 프롬프트</button>
+          <button class="file-link" onclick="downloadTextFile('execMatrix')">📄 경영진 매트릭스</button>
+        </div>
       </div>
     </section>
 
