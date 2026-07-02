@@ -774,8 +774,11 @@
       });
       // 일부 브라우저는 형제 요소의 display 변경 후 sticky 배치를 다시 계산하지
       // 못하는 버그가 있어, 강제로 reflow를 일으켜 상단 탭 고정을 재계산시킨다.
+      // 동시에 static으로 잠깐 풀었을 때의 위치를 측정해 탭바의 "원래" 문서상
+      // 좌표(스크롤에 의해 sticky로 붙지 않은 상태의 좌표)를 구해둔다.
       var tabbarEl = document.querySelector('.tabbar');
       tabbarEl.style.position = 'static';
+      var tabbarNaturalTop = tabbarEl.getBoundingClientRect().top + window.pageYOffset;
       void tabbarEl.offsetHeight;
       tabbarEl.style.position = '';
       heroCallout.classList.remove('tone-pm','tone-cust','tone-exec');
@@ -789,12 +792,9 @@
         heroDetail.classList.remove('open');
         heroCallout.setAttribute('aria-expanded','false');
       }
-      // 페이지 맨 위(제목·콜아웃)까지 되돌리지 않고, 탭바가 이미 지나간 경우에만
-      // 탭바 위치까지만 살짝 스크롤해 지금 보던 자리에 최대한 가깝게 유지한다.
-      var tabbarTop = tabbarEl.getBoundingClientRect().top + window.pageYOffset;
-      if(window.pageYOffset > tabbarTop){
-        window.scrollTo({top:tabbarTop, behavior:'smooth'});
-      }
+      // 탭을 바꾸면 항상 "탭바가 화면 맨 위에 걸리고 01·요약이 바로 아래 오는"
+      // 위치로 이동한다 (페이지 최상단의 제목·콜아웃까지 되돌아가진 않는다).
+      window.scrollTo({top:tabbarNaturalTop, behavior:'smooth'});
     });
   });
 
