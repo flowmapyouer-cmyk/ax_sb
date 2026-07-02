@@ -37,12 +37,12 @@
   ::selection{ background:var(--ink); color:#fff; }
   button{ font-family:inherit; }
 
-  .wrap{ max-width:860px; margin:0 auto; padding:48px 22px 100px; }
+  .wrap{ max-width:860px; margin:0 auto; padding:0 22px 100px; }
 
   /* ---------- Header ---------- */
   header{
     display:flex; flex-direction:column; gap:12px;
-    padding-bottom:28px; margin-bottom:8px;
+    padding-bottom:28px;
   }
   .eyebrow{
     font-family:var(--mono); font-size:12px; letter-spacing:.08em;
@@ -77,9 +77,15 @@
   .callout-hero.tone-exec{ background:var(--exec-soft); border-left-color:var(--exec); }
   .callout-hero.tone-exec .hl{ color:var(--exec); }
 
+  /* ---------- Sticky head (header + tabs together) ---------- */
+  .sticky-head{
+    position:sticky; top:0; z-index:25;
+    background:var(--paper);
+    padding-top:48px;
+  }
+
   /* ---------- Tabs ---------- */
   .tabbar{
-    position:sticky; top:0; z-index:20;
     display:flex; gap:8px;
     background:var(--paper);
     padding:16px 0 18px;
@@ -379,6 +385,7 @@
 
 <div class="wrap">
 
+  <div class="sticky-head">
   <header>
     <div class="eyebrow">SecondBoost · Deliverable Dashboard</div>
     <h1>같은 원문, 다른 세 개의 문서</h1>
@@ -402,6 +409,7 @@
       <span class="role"><span class="dot"></span>스킬 · challenge-prompt-v3</span>
       <span class="name">세컨부스트 경영진</span>
     </button>
+  </div>
   </div>
 
   <!-- ======================= PM PANEL ======================= -->
